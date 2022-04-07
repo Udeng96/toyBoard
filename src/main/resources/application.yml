@@ -1,0 +1,22 @@
+server:
+  servlet:
+    context-path: /toy
+  port: 8088
+
+spring:
+  datasource:
+    hikari:
+      jdbc-url: jdbc:postgresql://localhost:5432/boardKotlin
+      driver-class-name: org.postgresql.Driver
+      username: postgres
+      password: 1234
+  devtools:
+    livereload:
+      enabled: true
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: none
