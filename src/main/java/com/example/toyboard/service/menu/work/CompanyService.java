@@ -25,7 +25,7 @@ public class CompanyService {
 
     public boolean addCompany(CompanyData companyData){
 
-        String companyId = makeCompanyId(companyData.getUserId(),companyData.getCompanyNm(),companyData.getJoinDtm());
+        String companyId = makeCompanyId(companyData.getAuthority(),companyData.getCompanyNm(),companyData.getJoinDtm());
         companyData.setCompanyId(companyId);
         return companyDao.insertNewCompany(companyData);
 
@@ -43,10 +43,15 @@ public class CompanyService {
 
     }
 
-    public String makeCompanyId(String userId, String companyNm, String joinDtm){
+    public String makeCompanyId(String authority, String companyNm, String joinDtm){
 
         joinDtm = joinDtm.substring(1,6);
-        String result = "companyId"+userId+joinDtm+companyNm;
+        authority = authority.substring(15,30);
+        String result = "companyId"+authority+joinDtm+companyNm;
+        if(result.length()>45){
+            result = result.substring(1,45);
+        }
+
 
         return result;
     }

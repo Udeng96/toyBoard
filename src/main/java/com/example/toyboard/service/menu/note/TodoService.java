@@ -63,6 +63,8 @@ public class TodoService {
     //todo : title을 db에 있는 내용과 비교해서 만일 있으면 해당 내용 뒤에 cnt +1 해서 title 구성하기.
     // 예를 들어 오늘의 todo로 제목을 설정해놨는데 있음면 오늘의 todo2(cnt+1)로 자동 설정되도로
     public String makeTodoId(String authority,String title){
+
+        authority = authority.substring(15,authority.length());
         String todoId = "todo"+getTodayDate()+title+authority;
         if(todoId.length()>45){
             todoId = todoId.substring(1,45);

@@ -13,7 +13,7 @@ import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
-@Repository("joinDao")
+@Repository("memberDao")
 @Transactional
 public class MemberDao {
 
@@ -37,9 +37,13 @@ public class MemberDao {
         try{
             StringBuffer sb = new StringBuffer();
             sb.append("select m from MemberData m where 1=1 ");
-            sb.append("and authority = :pageAuthority");
+            if(!pageAuthority.isEmpty()){
+                sb.append("and m.authority = :pageAuthority");
+            }
             Query query = em.createQuery(sb.toString());
-            query.setParameter("pageAuthority",pageAuthority);
+            if(!pageAuthority.isEmpty()){
+                query.setParameter("pageAuthority",pageAuthority);
+            }
             memberDataList = query.getResultList();
 
 
@@ -86,11 +90,11 @@ public class MemberDao {
      *
      */
 
-    public boolean modifyMemInfo(MemberData memberData, String email){
+    public boolean modifyMemInfo(MemberData memberData, String id){
 
         boolean result = false;
         try{
-            MemberData found = em.find(MemberData.class,email);
+            MemberData found = em.find(MemberData.class,id);
             found.compareAndChangeData(memberData);
             em.merge(found);
             result = true;

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +48,13 @@ public class CompanyDao {
                 sb.append("and c.companyId = :companyId ");
             }
             sb.append("order by c.joinDtm");
+
+            Query query = em.createQuery(sb.toString());
+            query.setParameter("userId",userId);
+            if(!companyId.isEmpty()){
+                query.setParameter("companyId",companyId);
+            }
+            companyDataList = query.getResultList();
         }catch(HibernateException e){
             logger.error(e.getMessage(),e);
         }
@@ -59,7 +67,7 @@ public class CompanyDao {
         boolean result = false;
         try{
             CompanyData found = em.find(CompanyData.class, companyId);
-            //todo : compareAndChangeData
+            found.compareAndChangeData(companyData);
             em.merge(found);
             result = true;
         }catch(HibernateException e){

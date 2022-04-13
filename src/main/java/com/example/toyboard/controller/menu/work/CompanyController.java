@@ -23,10 +23,10 @@ public class CompanyController {
     @GetMapping("/company/list")
     public String getCompanyList(
             @RequestParam(value="userId", defaultValue = "")String userId,
-            @RequestParam(value = "companyId",required = false,defaultValue = "")String companyID
+            @RequestParam(value = "companyId",required = false,defaultValue = "")String companyId
     ){
 
-        List<CompanyData> list = companyService.getCompanyList(userId,companyID);
+        List<CompanyData> list = companyService.getCompanyList(userId,companyId);
         return gson.toJson(list);
 
     }

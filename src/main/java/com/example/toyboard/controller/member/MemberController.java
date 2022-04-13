@@ -21,6 +21,7 @@ public class MemberController {
     @Autowired
     MemberService memberService;
 
+
     @GetMapping(value = "/info")
     public String getMemInfo(
             @RequestParam(value = "pageAuthority",defaultValue = "")String pageAuthority
@@ -41,7 +42,6 @@ public class MemberController {
             @RequestBody MemberData memberData,
             @RequestParam(value = "id",defaultValue = "")String id
     ){
-
         return memberService.modifyMemInfo(memberData, id);
     }
 

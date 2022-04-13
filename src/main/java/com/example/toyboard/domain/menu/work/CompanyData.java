@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "MENU_WORK_COMPNAY", schema = "TOY")
+@Table(name = "MENU_WORK_COMPANY", schema = "TOY")
 public class CompanyData {
 
     @Column(name = "user_id")
@@ -28,7 +28,7 @@ public class CompanyData {
     String profession;
 
     @Column(name = "salary")
-    String salary;
+    Integer salary;
 
     @Column(name = "join_dtm")
     String joinDtm;
@@ -40,7 +40,10 @@ public class CompanyData {
     @Id
     String companyId;
 
-    public CompanyData(String userId, String companyNm, String companyAddr, String rank, String dept, String profession, String salary, String joinDtm, String leaveDtm, String companyId) {
+    @Column(name = "authority")
+    String authority;
+
+    public CompanyData(String userId, String companyNm, String companyAddr, String rank, String dept, String profession, Integer salary, String joinDtm, String leaveDtm, String companyId, String authority) {
         this.userId = userId;
         this.companyNm = companyNm;
         this.companyAddr = companyAddr;
@@ -51,9 +54,36 @@ public class CompanyData {
         this.joinDtm = joinDtm;
         this.leaveDtm = leaveDtm;
         this.companyId = companyId;
+        this.authority = authority;
     }
 
     public CompanyData() {
+    }
+
+    public void compareAndChangeData(CompanyData companyData){
+
+        if(!this.companyNm.equals(companyData.getCompanyNm())){
+            this.companyNm = companyData.getCompanyNm();
+        }
+        if(!this.companyAddr.equals(companyData.getCompanyAddr())){
+            this.companyAddr = companyData.getCompanyAddr();
+        }
+        if(!this.rank.equals(companyData.getRank())){
+            this.rank = companyData.getRank();
+        }
+        if(!this.dept.equals(companyData.getDept())){
+            this.dept = companyData.getDept();
+        }
+        if(!this.profession.equals(companyData.getProfession())){
+            this.profession = companyData.getProfession();
+        }
+        if(!this.salary.equals(companyData.getSalary())){
+            this.salary = companyData.getSalary();
+        }
+        if(!this.leaveDtm.equals(companyData.getLeaveDtm())){
+            this.leaveDtm = companyData.getLeaveDtm();
+        }
+
     }
 
     public String getUserId() {
@@ -104,11 +134,11 @@ public class CompanyData {
         this.profession = profession;
     }
 
-    public String getSalary() {
+    public Integer getSalary() {
         return salary;
     }
 
-    public void setSalary(String salary) {
+    public void setSalary(Integer salary) {
         this.salary = salary;
     }
 
@@ -136,6 +166,14 @@ public class CompanyData {
         this.companyId = companyId;
     }
 
+    public String getAuthority() {
+        return authority;
+    }
+
+    public void setAuthority(String authority) {
+        this.authority = authority;
+    }
+
     @Override
     public String toString() {
         return "CompanyData{" +
@@ -149,6 +187,7 @@ public class CompanyData {
                 ", joinDtm='" + joinDtm + '\'' +
                 ", leaveDtm='" + leaveDtm + '\'' +
                 ", companyId='" + companyId + '\'' +
+                ", authority='" + authority + '\'' +
                 '}';
     }
 }

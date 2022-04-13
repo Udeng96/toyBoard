@@ -49,14 +49,13 @@ public class MemberData {
         if(!this.name.equals(obj.getName())){
             this.name = obj.getName();
         }
-        if(!this.pwd.equals(obj.getPwd())){
+        if(!this.pwd.equals(obj.getPwd()) && !obj.getPwd().isEmpty()){
             this.pwd = obj.getPwd();
         }
         if(!this.phoneNum.equals(obj.getPhoneNum())){
             this.phoneNum = obj.getPhoneNum();
         }
-
-        if(!this.profilePhoto.equals(obj.getProfilePhoto())){
+        if(!this.profilePhoto.equals(obj.getProfilePhoto()) && obj.getProfilePhoto()!=null){
             this.profilePhoto = obj.getProfilePhoto();
         }
     }

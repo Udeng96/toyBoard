@@ -73,7 +73,10 @@ public class MemberService {
     public boolean modifyMemInfo(MemberData memberData, String id){
 
         String pwd = memberData.getPwd();
-        String encryptPwd = cryptoText(pwd,"encrypt");
+        if(!pwd.isEmpty()){
+            String encryptPwd = cryptoText(pwd,"encrypt");
+            memberData.setPwd(encryptPwd);
+        }
         return memberDao.modifyMemInfo(memberData, id);
 
     }

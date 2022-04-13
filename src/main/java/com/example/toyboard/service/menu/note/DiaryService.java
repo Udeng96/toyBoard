@@ -62,6 +62,7 @@ public class DiaryService {
 
     public String makeDiaryId(String authority){
 
+        authority = authority.substring(15,authority.length());
         String diaryId = "diary"+getTodayDate()+authority;
         if(diaryId.length()>45){
             diaryId = diaryId.substring(1,45);

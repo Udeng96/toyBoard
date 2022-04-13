@@ -70,7 +70,7 @@ public class DataConfig {
     @Bean(name="jpaProperties")
     public Properties jpaProperties(){
         Properties prop = new Properties();
-        prop.setProperty(Environment.SHOW_SQL, "false");
+        prop.setProperty(Environment.SHOW_SQL, "true");
         prop.setProperty(Environment.FORMAT_SQL, "true");
         prop.setProperty(Environment.DIALECT, DB_DIALECT);
         prop.setProperty(Environment.DRIVER, DB_DRIVER);
