@@ -22,19 +22,17 @@ public class SchoolProjectDao {
     @PersistenceContext(unitName = "entityManagerFactoryBean")
     EntityManager em;
 
-    public List<SchoolProjectData> getSchoolProjectList(String userId,String subjectId){
+    public List<SchoolProjectData> getSchoolProjectList(String userId){
 
         List<SchoolProjectData> schoolProjectDataList = new ArrayList<>();
         try{
             StringBuffer sb = new StringBuffer();
             sb.append("select s from SchoolProjectData s where 1=1 ");
             sb.append("and s.userId = :userId ");
-            sb.append("and s.subjectId = :subjectId ");
             sb.append("order by s.sProjectStartDtm");
 
-            Query query = em.createQuery(toString());
+            Query query = em.createQuery(sb.toString());
             query.setParameter("userId",userId);
-            query.setParameter("subjectId",subjectId);
             schoolProjectDataList = query.getResultList();
         }catch(HibernateException e){
             logger.error(e.getMessage(),e);
@@ -60,7 +58,7 @@ public class SchoolProjectDao {
         boolean result = false;
         try{
             SchoolProjectData found = em.find(SchoolProjectData.class, sProjectId);
-            //todo : compare and change data
+            found.compareAndChangeData(schoolProjectData);
             em.merge(found);
             result = true;
         }catch(HibernateException e){

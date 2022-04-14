@@ -34,7 +34,14 @@ public class SchoolSubjectData {
     @Column(name = "authority")
     String authority;
 
-    public SchoolSubjectData(String subjectId, String schoolId, String userId, String subjectName, String subjectSemester, String subjectScore, String subjectMajorYn, String authority) {
+    @Column(name = "school_nm")
+    String schoolNm;
+
+    // H : High / U : University / G : Grad
+    @Column(name = "school_type")
+    String schoolType;
+
+    public SchoolSubjectData(String subjectId, String schoolId, String userId, String subjectName, String subjectSemester, String subjectScore, String subjectMajorYn, String authority, String schoolNm, String schoolType) {
         this.subjectId = subjectId;
         this.schoolId = schoolId;
         this.userId = userId;
@@ -43,9 +50,26 @@ public class SchoolSubjectData {
         this.subjectScore = subjectScore;
         this.subjectMajorYn = subjectMajorYn;
         this.authority = authority;
+        this.schoolNm = schoolNm;
+        this.schoolType = schoolType;
     }
 
     public SchoolSubjectData() {
+    }
+
+    public void compareAndChangeData(SchoolSubjectData obj){
+        if(!this.subjectName.equals(obj.getSubjectName())){
+            this.subjectName = obj.getSubjectName();
+        }
+        if(!this.subjectSemester.equals(obj.getSubjectSemester())){
+            this.subjectSemester = obj.getSubjectSemester();
+        }
+        if(!this.subjectScore.equals(obj.getSubjectScore())){
+            this.subjectScore = obj.getSubjectScore();
+        }
+        if(!this.subjectMajorYn.equals(obj.getSubjectMajorYn())){
+            this.subjectMajorYn = obj.getSubjectMajorYn();
+        }
     }
 
     public String getSubjectId() {
@@ -112,6 +136,22 @@ public class SchoolSubjectData {
         this.authority = authority;
     }
 
+    public String getSchoolNm() {
+        return schoolNm;
+    }
+
+    public void setSchoolNm(String schoolNm) {
+        this.schoolNm = schoolNm;
+    }
+
+    public String getSchoolType() {
+        return schoolType;
+    }
+
+    public void setSchoolType(String schoolType) {
+        this.schoolType = schoolType;
+    }
+
     @Override
     public String toString() {
         return "SchoolSubjectData{" +
@@ -123,6 +163,8 @@ public class SchoolSubjectData {
                 ", subjectScore='" + subjectScore + '\'' +
                 ", subjectMajorYn='" + subjectMajorYn + '\'' +
                 ", authority='" + authority + '\'' +
+                ", schoolNm='" + schoolNm + '\'' +
+                ", schoolType='" + schoolType + '\'' +
                 '}';
     }
 }

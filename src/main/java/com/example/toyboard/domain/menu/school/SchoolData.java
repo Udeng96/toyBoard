@@ -41,6 +41,8 @@ public class SchoolData {
     @Column(name = "grad_school_nm")
     String gradSchoolNm;
 
+    @Column(name = "grad_school_dept")
+    String gradSchoolDept;
     // M : 석사 / D : 박사
     @Column(name = "grad_school_degree")
     String gradSchoolDegree;
@@ -51,8 +53,20 @@ public class SchoolData {
     @Column(name = "grad_school_grad_dtm")
     String gradSchoolGradDtm;
 
+    @Column(name = "authority")
+    String authority;
 
-    public SchoolData(String userId, String lastEdu, String highSchoolNm, String highSchoolEnterDtm, String highSchoolGradDtm, String universityNm, String universityDept, String universityEnterDtm, String universityGradDtm, String gradSchoolNm, String gradSchoolDegree, String gradSchoolEnterDtm, String gradSchoolGradDtm, String schoolId) {
+    @Column(name = "high_school_id")
+    String highSchoolId;
+
+    @Column(name = "university_id")
+    String universityId;
+
+    @Column(name = "grad_school_id")
+    String gradSchoolId;
+
+
+    public SchoolData(String userId, String lastEdu, String highSchoolNm, String highSchoolEnterDtm, String highSchoolGradDtm, String universityNm, String universityDept, String universityEnterDtm, String universityGradDtm, String gradSchoolNm, String gradSchoolDept, String gradSchoolDegree, String gradSchoolEnterDtm, String gradSchoolGradDtm, String authority, String highSchoolId, String universityId, String gardSchoolId) {
         this.userId = userId;
         this.lastEdu = lastEdu;
         this.highSchoolNm = highSchoolNm;
@@ -63,12 +77,71 @@ public class SchoolData {
         this.universityEnterDtm = universityEnterDtm;
         this.universityGradDtm = universityGradDtm;
         this.gradSchoolNm = gradSchoolNm;
+        this.gradSchoolDept = gradSchoolDept;
         this.gradSchoolDegree = gradSchoolDegree;
         this.gradSchoolEnterDtm = gradSchoolEnterDtm;
         this.gradSchoolGradDtm = gradSchoolGradDtm;
+        this.authority = authority;
+        this.highSchoolId = highSchoolId;
+        this.universityId = universityId;
+        this.gradSchoolId = gardSchoolId;
     }
 
     public SchoolData() {
+    }
+
+    public void compareAndChangeData(SchoolData schoolData){
+        if(!this.lastEdu.equals(schoolData.getLastEdu())){
+            this.lastEdu = schoolData.getLastEdu();
+        }
+        if(!this.highSchoolNm.equals(schoolData.getHighSchoolNm())){
+            this.highSchoolNm = schoolData.getHighSchoolNm();
+            this.highSchoolId = schoolData.getHighSchoolId();
+        }
+        if(this.highSchoolEnterDtm.equals(schoolData.getGradSchoolEnterDtm())){
+            this.highSchoolEnterDtm= schoolData.getHighSchoolEnterDtm();
+        }
+        if(!this.highSchoolGradDtm.equals(schoolData.getHighSchoolGradDtm())){
+            this.highSchoolGradDtm = schoolData.getHighSchoolGradDtm();
+        }
+        if(!this.universityNm.equals(schoolData.getUniversityNm())){
+            this.universityNm = schoolData.getUniversityNm();
+            this.universityId = schoolData.getUniversityId();
+        }
+        if(!this.universityDept.equals(schoolData.getUniversityDept())){
+            this.universityDept = schoolData.getUniversityDept();
+        }
+        if(!this.universityEnterDtm.equals(schoolData.getUniversityEnterDtm())){
+            this.universityEnterDtm = schoolData.getUniversityEnterDtm();
+        }
+        if(!this.universityGradDtm.equals(schoolData.getUniversityGradDtm())){
+            this.universityGradDtm = schoolData.getUniversityGradDtm();
+        }
+        if(!this.gradSchoolNm.equals(schoolData.getGradSchoolNm())){
+            this.gradSchoolNm = schoolData.getGradSchoolNm();
+            this.gradSchoolId = schoolData.getGradSchoolId();
+        }
+        if(!this.gradSchoolDept.equals(schoolData.getGradSchoolDept())){
+            this.gradSchoolDept = schoolData.getGradSchoolDept();
+        }
+        if(!this.gradSchoolDegree.equals(schoolData.getGradSchoolDegree())){
+            this.gradSchoolDegree = schoolData.getGradSchoolDegree();
+        }
+        if(!this.gradSchoolEnterDtm.equals(schoolData.getGradSchoolEnterDtm())){
+            this.gradSchoolEnterDtm = schoolData.getGradSchoolEnterDtm();
+        }
+        if(!this.gradSchoolGradDtm.equals(schoolData.getGradSchoolGradDtm())){
+            this.gradSchoolGradDtm = schoolData.getGradSchoolGradDtm();
+        }
+        if(!this.highSchoolId.equals(schoolData.getHighSchoolId())){
+            this.highSchoolId = schoolData.getHighSchoolId();
+        }
+        if(!this.universityId.equals(schoolData.getUniversityId())){
+            this.universityId = schoolData.getUniversityId();
+        }
+        if(!this.gradSchoolId.equals(schoolData.getGradSchoolId())){
+            this.gradSchoolId = schoolData.getGradSchoolId();
+        }
     }
 
     public String getUserId() {
@@ -151,6 +224,14 @@ public class SchoolData {
         this.gradSchoolNm = gradSchoolNm;
     }
 
+    public String getGradSchoolDept() {
+        return gradSchoolDept;
+    }
+
+    public void setGradSchoolDept(String gradSchoolDept) {
+        this.gradSchoolDept = gradSchoolDept;
+    }
+
     public String getGradSchoolDegree() {
         return gradSchoolDegree;
     }
@@ -175,6 +256,37 @@ public class SchoolData {
         this.gradSchoolGradDtm = gradSchoolGradDtm;
     }
 
+    public String getAuthority() {
+        return authority;
+    }
+
+    public void setAuthority(String authority) {
+        this.authority = authority;
+    }
+
+    public String getHighSchoolId() {
+        return highSchoolId;
+    }
+
+    public void setHighSchoolId(String highSchoolId) {
+        this.highSchoolId = highSchoolId;
+    }
+
+    public String getUniversityId() {
+        return universityId;
+    }
+
+    public void setUniversityId(String universityId) {
+        this.universityId = universityId;
+    }
+
+    public String getGradSchoolId() {
+        return gradSchoolId;
+    }
+
+    public void setGradSchoolId(String gardSchoolId) {
+        this.gradSchoolId = gardSchoolId;
+    }
 
     @Override
     public String toString() {
@@ -189,9 +301,14 @@ public class SchoolData {
                 ", universityEnterDtm='" + universityEnterDtm + '\'' +
                 ", universityGradDtm='" + universityGradDtm + '\'' +
                 ", gradSchoolNm='" + gradSchoolNm + '\'' +
+                ", gradSchoolDept='" + gradSchoolDept + '\'' +
                 ", gradSchoolDegree='" + gradSchoolDegree + '\'' +
                 ", gradSchoolEnterDtm='" + gradSchoolEnterDtm + '\'' +
                 ", gradSchoolGradDtm='" + gradSchoolGradDtm + '\'' +
+                ", authority='" + authority + '\'' +
+                ", highSchoolId='" + highSchoolId + '\'' +
+                ", universityId='" + universityId + '\'' +
+                ", gardSchoolId='" + gradSchoolId + '\'' +
                 '}';
     }
 }

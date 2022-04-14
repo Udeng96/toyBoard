@@ -39,17 +39,22 @@ public class SchoolSubjectDao {
 
     public List<SchoolSubjectData> getSubjectListByAll(String semester, String userId){
         List<SchoolSubjectData> schoolSubjectDataList = new ArrayList<>();
-        String grade = semester.substring(1,1);
+        String grade = "";
+        if(!semester.isEmpty()){
+            grade = semester.substring(0,1);
+        }
+        logger.info("grade:{}",grade);
         try{
             StringBuffer sb = new StringBuffer();
             sb.append("select s from SchoolSubjectData s where 1=1 ");
-            sb.append("and userId = :userId ");
+            sb.append("and s.userId = :userId ");
             if(!semester.isEmpty()){
                 sb.append("and substring(s.subjectSemester,1,1) = :grade ");
             }
             sb.append("order by s.subjectSemester");
 
             Query query = em.createQuery(sb.toString());
+            query.setParameter("userId",userId);
             if(!semester.isEmpty()){
                 query.setParameter("grade",grade);
             }
@@ -67,7 +72,7 @@ public class SchoolSubjectDao {
         try{
 
             SchoolSubjectData found = em.find(SchoolSubjectData.class,subjectId);
-            //todo : compareAndChangeData
+            found.compareAndChangeData(schoolSubjectData);
             em.merge(found);
             result = true;
         }catch(HibernateException e){

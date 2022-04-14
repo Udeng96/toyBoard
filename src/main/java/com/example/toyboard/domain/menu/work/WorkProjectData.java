@@ -62,6 +62,25 @@ public class WorkProjectData {
 
     public void compareAndChangeData(WorkProjectData workProjectData){
 
+        if(!this.wProjectTitle.equals(workProjectData.getwProjectTitle())){
+            this.wProjectTitle = workProjectData.getwProjectTitle();
+        }
+        if(!this.wProjectPhoto.equals(workProjectData.getwProjectPhoto())){
+            this.wProjectPhoto = workProjectData.getwProjectPhoto();
+        }
+        if(!this.wProjectEndDtm.equals(workProjectData.getwProjectEndDtm())){
+            this.wProjectEndDtm = workProjectData.getwProjectEndDtm();
+        }
+        if(!this.wProjectTeam.equals(workProjectData.getwProjectTeam())){
+            this.wProjectTeam = workProjectData.getwProjectTeam();
+        }
+        if(!this.wProjectContent.equals(workProjectData.getwProjectContent())){
+            this.wProjectContent = workProjectData.getwProjectContent();
+        }
+        if(!this.wProjectStack.equals(workProjectData.getwProjectStack())){
+            this.wProjectStack = workProjectData.getwProjectStack();
+        }
+
     }
 
     public String getwProjectId() {

@@ -21,11 +21,10 @@ public class SchoolProjectController {
 
     @GetMapping("/project/list")
     public String getProjectList(
-            @RequestParam(value = "userId",defaultValue = "")String userId,
-            @RequestParam(value = "subjectId",defaultValue = "")String subjectId
+            @RequestParam(value = "userId",defaultValue = "")String userId
     ){
 
-        List<SchoolProjectData> list = schoolProjectService.getSchoolProjectDataList(userId, subjectId);
+        List<SchoolProjectData> list = schoolProjectService.getSchoolProjectDataList(userId);
         return gson.toJson(list);
     }
 
@@ -39,9 +38,9 @@ public class SchoolProjectController {
     @PostMapping("/project/modify")
     public boolean modifyProjectInfo(
             @RequestBody SchoolProjectData schoolProjectData,
-            @RequestParam(value = "subjectId",defaultValue = "")String subjectId
+            @RequestParam(value = "projectId",defaultValue = "")String projectId
     ){
-        return schoolProjectService.modifySchoolInfo(schoolProjectData, subjectId);
+        return schoolProjectService.modifySchoolInfo(schoolProjectData, projectId);
     }
 
     @PostMapping("/project/delete")

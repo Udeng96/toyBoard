@@ -18,13 +18,14 @@ public class SchoolProjectService {
     @Autowired
     SchoolProjectDao schoolProjectDao;
 
-    public List<SchoolProjectData> getSchoolProjectDataList(String userId, String subjectId){
+    public List<SchoolProjectData> getSchoolProjectDataList(String userId){
 
-        return schoolProjectDao.getSchoolProjectList(userId, subjectId);
+        return schoolProjectDao.getSchoolProjectList(userId);
     }
 
     public boolean addSchoolProjectInfo(SchoolProjectData schoolProjectData){
-
+        String id = getProjectId(schoolProjectData.getAuthority(),schoolProjectData.getsProjectTitle());
+        schoolProjectData.setsProjectId(id);
         return schoolProjectDao.addSchoolProject(schoolProjectData);
 
     }
@@ -37,6 +38,19 @@ public class SchoolProjectService {
     public boolean deleteSchoolInfo(String subjectId){
 
         return schoolProjectDao.deleteSchoolProject(subjectId);
+
+    }
+
+    public String getProjectId(String authority,String projectNm){
+
+        authority = authority.substring(14);
+        String result = "sProject_"+projectNm+authority;
+
+        if(result.length()>45){
+            result = result.substring(0,44);
+        }
+
+        return result;
 
     }
 

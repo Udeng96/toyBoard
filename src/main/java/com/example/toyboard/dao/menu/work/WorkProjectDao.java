@@ -60,7 +60,7 @@ public class WorkProjectDao {
         boolean result = false;
         try{
             WorkProjectData found = em.find(WorkProjectData.class, wProjectId);
-            //todo : compare and change data
+            found.compareAndChangeData(workProjectData);
             em.merge(found);
             result = true;
         }catch(HibernateException e){
@@ -68,6 +68,7 @@ public class WorkProjectDao {
         }
         return result;
     }
+
 
     public boolean deleteWorkProject(String wProjectId){
         boolean result = false;

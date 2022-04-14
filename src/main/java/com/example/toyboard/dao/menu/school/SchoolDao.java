@@ -59,7 +59,7 @@ public class SchoolDao {
         try{
 
             SchoolData found = em.find(SchoolData.class, userId);
-            //todo : compareAndChangeData
+            found.compareAndChangeData(schoolData);
             em.merge(found);
             result = true;
         }catch(HibernateException e){

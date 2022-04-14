@@ -69,6 +69,33 @@ public class SchoolProjectData {
     public SchoolProjectData() {
     }
 
+    public void compareAndChangeData(SchoolProjectData obj){
+        if(!this.sProjectTitle.equals(obj.getsProjectTitle())){
+            this.sProjectTitle = obj.getsProjectTitle();
+        }
+        if(!this.sProjectPhoto.equals(obj.getsProjectPhoto())){
+            this.sProjectPhoto = obj.getsProjectPhoto();
+        }
+        if(!this.sProjectTeam.equals(obj.getsProjectTeam())){
+            this.sProjectTeam = obj.getsProjectTeam();
+        }
+        if(!this.sProjectStack.equals(obj.getsProjectStack())){
+            this.sProjectStack = obj.getsProjectStack();
+        }
+        if(!this.sProjectContent.equals(obj.getsProjectContent())){
+            this.sProjectContent = obj.getsProjectContent();
+        }
+        if(!this.sProjectStartDtm.equals(obj.getsProjectStartDtm())){
+            this.sProjectStartDtm = obj.getsProjectStartDtm();
+        }
+        if(!this.sProjectEndDtm.equals(obj.getsProjectEndDtm())){
+            this.sProjectEndDtm = obj.getsProjectEndDtm();
+        }
+        if(!this.sProjectRole.equals(obj.getsProjectRole())){
+            this.sProjectRole = obj.getsProjectRole();
+        }
+    }
+
     public String getsProjectId() {
         return sProjectId;
     }

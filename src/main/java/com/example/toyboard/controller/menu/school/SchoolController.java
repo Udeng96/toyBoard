@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/school")
+@RequestMapping(value = "/school", produces = "application/json; charset=utf8")
 public class SchoolController {
 
     private static final Logger logger = LoggerFactory.getLogger(SchoolController.class);
@@ -30,19 +30,17 @@ public class SchoolController {
 
     @PostMapping("/edu/add")
     public boolean addSchoolInfo(
-            @RequestBody SchoolData schoolData,
-            @RequestParam(value = "lastEdu", defaultValue = "highSchool")String lastEdu
+            @RequestBody SchoolData schoolData
     ){
-        return schoolService.addSchoolInfo(schoolData, lastEdu);
+        return schoolService.addSchoolInfo(schoolData);
     }
 
-    @PostMapping("/edu/list")
+    @PostMapping("/edu/modify")
     public boolean modifySchoolInfo(
             @RequestBody SchoolData schoolData,
-            @RequestParam(value = "lastEdu", defaultValue = "highSchool")String lastEdu,
             @RequestParam(value = "userId", defaultValue = "")String userId
     ){
-        return schoolService.modifySchoolInfo(schoolData, lastEdu, userId);
+        return schoolService.modifySchoolInfo(schoolData, userId);
     }
 
     @PostMapping("/edu/delete")
